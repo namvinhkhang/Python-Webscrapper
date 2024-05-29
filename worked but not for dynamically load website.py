@@ -1,3 +1,5 @@
+#MODIFIED VERSION FROM THE TUTORIAL BUT FAILED SINCE IT DOESN'T WORK WITH DYNAMICALLY LOAD WEBSITES
+
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
