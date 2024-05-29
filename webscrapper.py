@@ -1,3 +1,5 @@
+#The default tutorial web scrapper to learn how to Code
+
 from bs4 import BeautifulSoup
 import requests
 
