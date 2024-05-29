@@ -1,5 +1,5 @@
 # Python-Webscrapper
-1st try 
+1st try \n
 29/05:
 Successfully scraped off "https://offcampushousing.umass.edu/housing/" (UMASS site) and stored values: link, name, address, etc to a dictionary for every configuration of the listings and stored each in a list.
 NEXT STEP:
