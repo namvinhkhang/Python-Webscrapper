@@ -7,15 +7,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
+#INITIALIZED THE DRIVER TO SCRAPE THE WEBSITE
 driver = webdriver.Chrome()
 driver.get('https://offcampushousing.umass.edu/housing')
 
-
+#CREATE A SOUP OF THE WEB
 soup = BeautifulSoup(driver.page_source, 'html.parser')
 num_place = int((soup.find('p',
                           attrs = {'class': 'list-search-results-available-count'})).text.split()[0])
 
+#TAKE IN ALL THE LISTING SOUP IN THE THE LIST "LISTINGS"
 listings = []
 i = 1
 while i <= math.ceil(num_place / 40):
@@ -27,7 +28,7 @@ while i <= math.ceil(num_place / 40):
     listings.extend(temp_soup.find_all('li', attrs = {'class': 'list-result-item'}))
     i += 1
 
-print(len(listings))
+# print(len(listings))
 houses = []
 
 #Ways to sort
@@ -52,9 +53,8 @@ for house in listings:
     driver.get(link)
     sub_soup = BeautifulSoup(driver.page_source, 'html.parser')
 
-
     name = sub_soup.h1.text
-
+    
     address = sub_soup.find('p', attrs = {'data-qaid': 'address'})
     if address:
         address = address.text
@@ -129,8 +129,8 @@ for house in listings:
             'Bathroom(s)': num_bath,
             'Included Utilities': util_include,
             'Price Ber Bed': price,
-            'Size (square Feet)': sq_feet,
+            'Size (square feet)': sq_feet,
             'MAXIMUM Number of People': max_occu,
         })
 
-print(num_place, len(houses))
+# print(num_place, len(houses))
