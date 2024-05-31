@@ -15,14 +15,14 @@ different_utils = umassScrape.run()
 # Load the data
 X_full = pd.read_csv('housing_data.csv')
 
-#Ploting Data
+#Ploting Data still UNFINISHED
 sns.set_theme()
 data = X_full.groupby('Size (square Feet)')['Price/Bed'].mean().reset_index()
 sns.barplot(x = "Size (square Feet)", y = "Price/Bed", data = data)
 
 plt.show()
 
-
+#USE THE DATA TO TRAIN A SIMPLE MODEL TO PREDICT THE PRICES OF FUTURE HOUSES
 #Transform the Included Util column
 for util in different_utils:
     X_full[util] = 0
