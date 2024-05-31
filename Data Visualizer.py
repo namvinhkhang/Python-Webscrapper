@@ -9,9 +9,9 @@ from sklearn.impute import SimpleImputer
 import umassScrape
 
 
-# different_utils = umassScrape.run()
-different_utils = ['Gas', 'Water', 'Electricity', 'Heat', 'Trash Removal',
-                   'Sewer', 'Air Conditioning', 'Internet', 'Cable']
+different_utils = umassScrape.run()
+# different_utils = ['Gas', 'Water', 'Electricity', 'Heat', 'Trash Removal',
+#                    'Sewer', 'Air Conditioning', 'Internet', 'Cable']
 # Load the data
 X_full = pd.read_csv('housing_data.csv')
 
