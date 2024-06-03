@@ -15,14 +15,49 @@ different_utils = umassScrape.run()
 # Load the data
 X_full = pd.read_csv('housing_data.csv')
 
-#Ploting Data still UNFINISHED
+#Ploting Data
 sns.set_theme()
-data = X_full.groupby('Size (square Feet)')['Price/Bed'].mean().reset_index()
-sns.barplot(x = "Size (square Feet)", y = "Price/Bed", data = data)
 
+features_1 = ['Distant From Campus', 'Bedroom(s)', 'Bathroom(s)', 'Size (square Feet)',
+            'MAXIMUM Number of People']
+for feature in features_1:
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(x=X_full[feature], y=X_full['Price/Bed'])
+    plt.title(f'Price/Bed vs {feature}')
+    plt.xlabel(feature)
+    plt.ylabel('Price/Bed')
 plt.show()
 
-#USE THE DATA TO TRAIN A SIMPLE MODEL TO PREDICT THE PRICES OF FUTURE HOUSES
+for feature in features_1:
+    plt.figure(figsize=(10, 6))
+    sns.regplot(x=X_full[feature], y=X_full['Price/Bed'])
+    plt.title(f'Regression Plot: Price/Bed vs {feature}')
+    plt.xlabel(feature)
+    plt.ylabel('Price/Bed')
+plt.show()
+
+features_2 = ['Distant From Campus', 'Bedroom(s)', 'Bathroom(s)', 'Size (square Feet)',
+            'MAXIMUM Number of People', 'Price/Bed']
+plt.figure(figsize=(12, 8))
+correlation_matrix = X_full[features_2].corr()
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+plt.title('Correlation Matrix')
+plt.show()
+
+sns.pairplot(X_full, vars=features_2)
+plt.show()
+
+categorical_features = ['Bedroom(s)', 'Bathroom(s)', 'MAXIMUM Number of People']
+for feature in categorical_features:
+    plt.figure(figsize=(10, 6))
+    sns.boxplot(x=X_full[feature], y=X_full['Price/Bed'])
+    plt.title(f'Price/Bed vs {feature}')
+    plt.xlabel(feature)
+    plt.ylabel('Price/Bed')
+plt.show()
+
+
+
 #Transform the Included Util column
 for util in different_utils:
     X_full[util] = 0
